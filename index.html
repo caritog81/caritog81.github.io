@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oráculo de Cartas</title>
+    <title>Revista Oráculo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style>
         body {
@@ -34,7 +34,7 @@
             align-items: center;
             cursor: pointer;
             transition: transform 0.3s;
-            background-image: url('lostres.jpg');
+            background-image: url('URL_DE_LA_IMAGEN_DEL_DORSO');
             background-size: cover;
             background-position: center;
         }
@@ -59,16 +59,27 @@
         #shuffleButton:hover {
             background-color: #00487a;
         }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        #result a {
+            color: #007acc;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
-    <h1>Oráculo de Cartas</h1>
+    <h1>Revista Oráculo</h1>
     <div class="deck">
-        <div class="card animate__animated" onclick="revealPhrase(this, 0)"></div>
-        <div class="card animate__animated" onclick="revealPhrase(this, 1)"></div>
-        <div class="card animate__animated" onclick="revealPhrase(this, 2)"></div>
+        <div class="card animate__animated" onclick="revealTheme(this, 0)"></div>
+        <div class="card animate__animated" onclick="revealTheme(this, 1)"></div>
+        <div class="card animate__animated" onclick="revealTheme(this, 2)"></div>
     </div>
     <button id="shuffleButton" onclick="shuffleDeck()">Barajar Cartas</button>
+    <div id="result"></div>
+
+    <audio id="shuffleSound" src="URL_DEL_SONIDO.mp3" preload="auto"></audio>
 
     <script src="script.js"></script>
 </body>
