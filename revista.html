@@ -8,13 +8,13 @@
     <style>
         body {
             font-family: 'Georgia', serif;
-            background-color: #fafafa;
+            background-color: #f7f9fc;
             color: #333;
             margin: 0;
             padding: 0;
         }
         .header {
-            background-color: #007acc;
+            background-color: #a816cd;
             color: #fff;
             padding: 20px;
             text-align: center;
@@ -40,6 +40,22 @@
             line-height: 1.6;
             margin-bottom: 20px;
         }
+        iframe {
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border: 5px solid #4CAF50; /* Verde vibrante */
+            border-radius: 10px; /* Bordes redondeados */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Efecto sombra */
+            width: 80%;
+            /* height: 600px; */
+            height: 60vh;
+            transition: transform 0.3s ease-in-out;
+        }
+       
+        iframe:hover {
+            transform: scale(1.02);
+        }
         .footer {
             background-color: #333;
             color: #fff;
@@ -49,17 +65,24 @@
         .footer p {
             margin: 0;
         }
+        @media (max-width: 768px) {
+            iframe {
+                width: 100%;
+                height: 400px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <h1 id="section-title">Revista Oráculo</h1>
     </div>
-    <div class="container" id="content">
+    <!-- <div class="container" id="content">
         <!-- El contenido será dinámico basado en la sección -->
-    </div>
+    </div> -->
+    <div id="pdf-viewer"></div>
     <div class="footer">
-        <p>&copy; 2024 Revista Oráculo. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Revista Oráculo. Creación de Gavilán Carolina .</p>
     </div>
 
     <script>
@@ -69,14 +92,21 @@
         const sections = {
             naturaleza: {
                 title: "Naturaleza",
+                pdf: "natureRevista.pdf#toolbar=0",
+        
+        
                 articles: [
                     { title: "Explorando la Belleza Natural", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula justo et justo varius, ac dignissim velit fermentum. Phasellus ac felis non libero dictum aliquam eget eu libero. Suspendisse potenti." },
                     { title: "La Fauna y Flora del Mundo", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula justo et justo varius, ac dignissim velit fermentum. Phasellus ac felis non libero dictum aliquam eget eu libero. Suspendisse potenti." },
-                    { title: "Conservación y Medio Ambiente", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula justo et justo varius, ac dignissim velit fermentum. Phasellus ac felis non libero dictum aliquam eget eu libero. Suspendisse potenti." }
+                    { title: "Conservación y Medio Ambiente", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula justo et justo varius, ac dignissim velit fermentum. Phasellus ac felis non libero dictum aliquam eget eu libero. Suspendisse potenti." },
+                    // <!-- Visor de PDF -->
+                    // <iframe src="natureRevista.pdf#toolbar=0"></iframe>
                 ]
+                                
             },
             tecnologia: {
                 title: "Tecnología",
+                pdf: "natureRevista.pdf#toolbar=0",
                 articles: [
                     { title: "Avances Tecnológicos", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula justo et justo varius, ac dignissim velit fermentum. Phasellus ac felis non libero dictum aliquam eget eu libero. Suspendisse potenti." },
                     { title: "Inteligencia Artificial", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula justo et justo varius, ac dignissim velit fermentum. Phasellus ac felis non libero dictum aliquam eget eu libero. Suspendisse potenti." },
@@ -85,6 +115,7 @@
             },
             cultura: {
                 title: "Cultura",
+                pdf: "natureRevista.pdf#toolbar=0",
                 articles: [
                     { title: "Arte y Literatura", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula justo et justo varius, ac dignissim velit fermentum. Phasellus ac felis non libero dictum aliquam eget eu libero. Suspendisse potenti." },
                     { title: "Tradiciones y Costumbres", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula justo et justo varius, ac dignissim velit fermentum. Phasellus ac felis non libero dictum aliquam eget eu libero. Suspendisse potenti." },
@@ -94,17 +125,31 @@
         };
 
         if (section && sections[section]) {
-            document.getElementById("section-title").innerText = `Revista Oráculo - ${sections[section].title}`;
-            const contentDiv = document.getElementById("content");
+            document.getElementById("section-title").innerText = `Revista Oráculo - Sección ${sections[section].title}`;
+            /* const contentDiv = document.getElementById("content");
             sections[section].articles.forEach(article => {
                 const articleDiv = document.createElement("div");
                 articleDiv.classList.add("article", "animate__animated", "animate__fadeIn");
                 articleDiv.innerHTML = `<h2>${article.title}</h2><p>${article.content}</p>`;
                 contentDiv.appendChild(articleDiv);
-            });
+            }); */
+        const pdfPath = sections[section].pdf;
+        const pdfViewer = document.createElement("iframe");
+        pdfViewer.src = pdfPath;
+        pdfViewer.width = "100%";
+        pdfViewer.height = "500px";
+        pdfViewer.style.border = "none";
+
+        const viewerContainer = document.getElementById("pdf-viewer");
+        viewerContainer.innerHTML = ""; // Limpiar el contenido anterior
+        viewerContainer.appendChild(pdfViewer);
+        
         } else {
             document.getElementById("content").innerHTML = "<p>Sección no encontrada.</p>";
         }
+        
+         
+                  
     </script>
 </body>
 </html>
