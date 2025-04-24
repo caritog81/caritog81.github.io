@@ -55,17 +55,23 @@
             margin: 0;
         }
       
-        #my_pdf_viewer {
-            width: 800px;
-            height: 650px;
+         #my_pdf_viewer {
+            width: 80%;
+            max-width: 1200px;
+            height: 450px;
             overflow: auto;
-            margin: 20px auto;
-        }
+            margin: auto;
+            padding: 20px;
+         }
 
         #my_pdf_viewer {
             background: rgb(240, 235, 235);
             text-align: center;
             border: solid 2px;
+        }
+         @media (max-width: 768px) {
+           .my_pdf_viewer {
+           width: 95%;
         }
         
     </style>
